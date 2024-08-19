@@ -1,41 +1,50 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "bnw",
 	"version": "${version}",
-	"name": "Example mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Brave New World",
+	"description": "Survive in cool, misty, weary world - one left behind...",
 	"authors": [
-		"Me!"
+		"Azzyypaaras"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://azzyys.works/",
+		"sources": "https://github.com/Azzyypaaras/Brave-New-World"
 	},
-	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"license": "ARR ~ code is MIT",
+	"icon": "assets/bnw/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+			"works.azzyys.BNWMain"
 		],
 		"client": [
-			"com.example.ExampleModClient"
+			"works.azzyys.BNWClient"
 		]
 	},
+	"accessWidener": "bnw.accesswidener",
 	"mixins": [
-		"modid.mixins.json",
+		"bnw.mixins.json",
 		{
-			"config": "modid.client.mixins.json",
+			"config": "bnw.client.mixins.json",
 			"environment": "client"
 		}
 	],
+	"modmenu": {
+		"links": {
+			"modmenu.discord": "https://discord.gg/Z76NcZ9pN4"
+		},
+		"badges": [],
+		"update_checker": true
+	},
 	"depends": {
 		"fabricloader": ">=0.15.0",
-		"minecraft": "~1.20.4",
+		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"spectrum": "*",
+		"pulseflux": "*"
 	}
 }

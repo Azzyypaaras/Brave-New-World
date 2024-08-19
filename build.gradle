@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.5-SNAPSHOT'
+	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -11,21 +11,34 @@ base {
 }
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	maven {
+		url = "https://jitpack.io"
+		"Incubus Core"
+	}
+	maven {
+		name = 'Ladysnake Mods'
+		url = 'https://maven.ladysnake.org/releases'
+		"Cardinal Components"
+	}
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
+		"Modmenu | EMI"
+	}
 }
 
 loom {
     splitEnvironmentSourceSets()
 
 	mods {
-		"modid" {
+		"bnw" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
+	}
+
+	loom {
+		accessWidenerPath = file("src/main/resources/bnw.accesswidener")
 	}
 
 }
@@ -38,11 +51,18 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
-	// Uncomment the following line to enable the deprecated Fabric API modules. 
-	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 
-	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
+	// To get that newer version
+	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.4.1")))
+
+	// Deps
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cc_version}"
+	modCompileOnly "dev.emi:emi-fabric:${project.emi_version}:api"
+	modLocalRuntime "dev.emi:emi-fabric:${project.emi_version}"
+
+	// Dev Env
+	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
+
 }
 
 processResources {
